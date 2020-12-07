@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Models;
+use Illuminate\Database\Eloquent\Model;
+use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
+use Astrotomic\Translatable\Translatable;
+
+class Product extends Model
+{
+    use Translatable;
+    public $translatedAttributes = ['name','description'];
+    protected $guarded = [];
+
+    protected $appends = ['image_path','profit_percent'];
+
+    public function getImagePathAttribute(){
+        return asset('uploads/image_product/'.$this->image);
+    }/* end of attribute */
+
+    public function getProfitPercentAttribute(){
+        $profit = $this->sale_price - $this->purchase_price;
+        $profit_percent = ($profit * 100)/$this->purchase_price;
+        return number_format($profit_percent , 2);
+    }
+
+    ///// relations
+    public function category(){
+        return $this->belongsTo(Category::class);
+    }
+
+    public function orders(){
+        return $this->belongsToMany(Oreder::class , 'product_order');
+    }
+
+}

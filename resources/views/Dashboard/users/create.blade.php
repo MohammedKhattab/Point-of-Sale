@@ -39,7 +39,11 @@
 
                 <div class="form-group">
                     <label>@lang('site.image')</label>
-                    <input type="file" name="image" class="form-control">
+                    <input type="file" name="image" class="form-control image">
+                </div>
+
+                <div class="form-group">
+                    <img src="{{asset('uploads/image_user/default.png')}}" alt="" style="width: 100px" class="img-thumbnail image_preview">
                 </div>
 
                 <div class="form-group">
@@ -59,7 +63,7 @@
                     <div class="nav-tabs-custom">
 
                         @php
-                            $models = ['users','categories','products'];
+                            $models = ['users','categories','products','clients','orders'];
                             $maps = ['create','read','update','delete'];
                         @endphp
 

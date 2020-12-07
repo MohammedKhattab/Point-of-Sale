@@ -19,9 +19,27 @@ Route::group(
         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
     ], function(){
         route::prefix('dasboard')->name('dashboard.')->middleware(['auth'])->group(function(){
+
             route::get('/index','dashboardController@index')->name('index');
+
+
             //user routes
             Route::resource('users', 'UserController')->except(['show']);
+
+            //clients routes
+            Route::resource('clients', 'ClientController')->except(['show']);
+            Route::resource('clients.orders', 'Client\OrderController')->except(['show']);
+
+            // categories routes
+            Route::resource('categories', 'CategoryController')->except(['show']);
+
+
+            // products routes
+            Route::resource('products', 'ProductController')->except(['show']);
+
+             // order routes
+             Route::resource('orders', 'OrderController')->except(['show']);
+             Route::get('/orders/{order}/products', 'OrderController@products')->name('orders.products');
          });
 
 

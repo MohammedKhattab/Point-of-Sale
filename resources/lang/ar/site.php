@@ -67,7 +67,7 @@ return [
     'purchase_price' => 'سعر الشراء',
     'price' => 'السعر',
     'sale_price' => 'سعر البيع',
-    'stock' => 'المخزن',
+    'stok' => 'المخزن',
     'profit_percent' => 'المكسب',
 
     'ar' => [
